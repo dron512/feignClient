@@ -1,0 +1,62 @@
+
+server:
+  port: 8082
+  servlet:
+    context-path: /
+
+
+spring:
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connectTimeout: 5000
+            readTimeout: 5000
+
+  # todo ?? ?????? ??
+  datasource:
+    url: jdbc:h2:mem:test
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true # ???? sql ??
+    properties:
+      hibernate:
+        format_sql: true # sql ??? ??
+        default_batch_fetch_size: 500 # ??? ??? ?? ? ?? ???
+    open-in-view: false # ??? ????? ?? ??? ???? ??? ??
+
+  servlet:
+    multipart:
+      max-file-size: 10MB # ?? ??? ?? ? ??? ?? ??? 10MB ??
+      max-request-size: 100MB # ?? ??? ?? ? ?? ?? ???? 100MB ??
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+
+
+logging:
+  level:
+    org.hibernate.type: trace # ???? ??? ????? ? ? ?? ?? ??
+    com.app: debug # todo ??? ??
+
+kakao:
+  client:
+    id: ENC(VxJdFhGkMS7ccqfj1hwCdpG0aYMFh1Y2H1QgQOkfmncxtQgZKXoMVJTgQJLhSCUp)
+    secret: ENC(nDL57BwAGzeo/FxXaam96U3BhPZrQyusgflD+YS8rTjitzV19kveK851JP1OrfK9)
+
+token:
+  secret: ENC(9c9uJh1XDJMe72tcz8o94Z1pqQxRrUdKaxFAlScPFuIGZtp57tFR3Q==) # ??? ???
+  access-token-expiration-time: 900000  # 15? 1000(ms) x 60(s) x 15(m)
+  refresh-token-expiration-time: 1209600000 # 2? 1000(ms) x 60 (s) x 60(m) x 24(h) x 14(d)
+
+jasypt:
+  password: "12341234"
